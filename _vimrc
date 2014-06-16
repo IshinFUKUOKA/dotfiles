@@ -13,8 +13,8 @@ set wildmenu
 
 "タブの設定
 set tabstop=2
-set smartindent
 set autoindent
+set expandtab
 set shiftwidth=2
 
 "行数表示
