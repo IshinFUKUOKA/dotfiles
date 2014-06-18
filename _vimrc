@@ -186,3 +186,41 @@ call s:InitNeoBundle()
 	NeoBundle 'Townk/vim-autoclose'
 "NERDTree
   NeoBundle 'scrooloose/nerdtree'
+"vimshell
+  NeoBundle 'Shougo/vimshell'
+"vimproc
+  NeoBundle 'Shougo/vimproc'
+"neocomplchace
+  NeoBundle 'Shougo/neocomplcache'
+"" neocomplcache
+NeoBundle 'Shougo/neocomplcache'
+
+" neocomplcache
+ let g:neocomplcache_enable_at_startup = 1
+ let g:neocomplcache_max_list = 30
+ let g:neocomplcache_auto_completion_start_length = 2
+ let g:neocomplcache_enable_smart_case = 1
+ "" like AutoComplPop
+ let g:neocomplcache_enable_auto_select = 1
+ "" search with camel case like Eclipse
+ let g:neocomplcache_enable_camel_case_completion = 1
+ let g:neocomplcache_enable_underbar_completion = 1
+ "imap <C-k> <Plug>(neocomplcache_snippets_expand)
+ "smap <C-k> <Plug>(neocomplcache_snippets_expand)
+ inoremap <expr><C-g> neocomplcache#undo_completion()
+ inoremap <expr><C-l> neocomplcache#complete_common_string()
+ "" SuperTab like snippets behavior.
+ "imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ?
+ "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" :
+ "\<TAB>"
+ "" <CR>: close popup and save indent.
+ "inoremap <expr><CR> neocomplcache#smart_close_popup() . (&indentexpr != ''? "\<C-f>\<CR>X\<BS>":"\<CR>")
+ inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+ "" <TAB>: completion.
+ inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+ "" <C-h>, <BS>: close popup and delete backword char.
+ inoremap <expr><C-h> neocomplcache#smart_close_popup() . "\<C-h>"
+ inoremap <expr><BS> neocomplcache#smart_close_popup() . "\<C-h>"
+ inoremap <expr><C-y> neocomplcache#close_popup()
+ inoremap <expr><C-e> neocomplcache#cancel_popup()"" "" " """""
+
