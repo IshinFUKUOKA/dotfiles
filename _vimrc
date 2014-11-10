@@ -192,6 +192,10 @@ call s:InitNeoBundle()
   NeoBundle 'Shougo/vimproc'
 "neocomplchace
 "  NeoBundle 'Shougo/neocomplcache'
+"neocomplete
+"  NeoBundle 'Shougo/neocomplete.vim'
+
+"let g:neocomplete#enable_at_startup = 1
 
 "" Disable AutoComplPop.
 "let g:acp_enableAtStartup = 0
