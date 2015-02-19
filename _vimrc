@@ -2,57 +2,57 @@ syntax on
 
 set nobackup
 
-"スワップファイルを保存しない
+" スワップファイルを保存しない
 set noswapfile
 
 "タイトル表示
 set title
 
-"補完候補の表示
+" 補完候補の表示
 set wildmenu
 
-"タブの設定
+" タブの設定
 set tabstop=2
 set autoindent
 set expandtab
 set shiftwidth=2
 
-"行数表示
+" 行数表示
 set number
-"現在のカーソル位置表示
+" 現在のカーソル位置表示
 set ruler
-"カーソル行の背景を変える→なんかめっちゃ重かった
-set cursorline
-"対応する括弧の表示
+" カーソル行の背景を変える→めっちゃ重かった
+" set cursorline
+" 対応する括弧の表示
 set showmatch
 
 
-"バックスペースの設定
+" バックスペースの設定
 set backspace=indent,eol,start
-"上下８行確保
+" 上下８行確保
 set scrolloff=8
 
-"検索文字をハイライト
+" 検索文字をハイライト
 set hlsearch
-"検索で大文字と小文字を区別しない
+" 検索で大文字と小文字を区別しない
 set ignorecase
 
 
-"カラースキーム
-colorscheme darkblue
+" カラースキーム
+colorscheme slate 
 
-"j,kによる移動を折返されたテキストでも自然に振舞うよう表示？
+" j,kによる移動を折返されたテキストでも自然に振舞うよう表示？
 nnoremap j gj
 nnoremap k gk
 
-"タブの設定
+" タブの設定
 " Anywhere SID.
 function! s:SID_PREFIX()
 	return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSID_PREFIX$')
 endfunction
 
 " Set tabline.
-function! s:my_tabline()  "{{{
+function! s:my_tabline()
 	let s = ''
 	for i in range(1, tabpagenr('$'))
 		let bufnrs = tabpagebuflist(i)
@@ -69,7 +69,7 @@ function! s:my_tabline()  "{{{
 	endfor
 	let s .= '%#TabLineFill#%T%=%#TabLine#'
 	return s
-endfunction "}}}
+endfunction
 let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
 set showtabline=2 ""常にタブラインを表示
 
@@ -93,7 +93,7 @@ map <silent> [Tag]h :tabprevious<CR>
 
 " zencoding-vim
 let g:user_emmet_leader_key='<TAB>'
-"言語変更
+" 言語変更
 let g:user_emmet_settings = {
 			\ 'lang' : 'ja',
 			\ 'html' : {
@@ -103,14 +103,15 @@ let g:user_emmet_settings = {
 			\		'filters' : 'fc',
 			\},
 			\}
-"}
-"ファイルを開いたときに最後にカーソルがあった場所に移動する
+" }
+
+" ファイルを開いたときに最後にカーソルがあった場所に移動する
 augroup vimrcEx
   au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
 	\ exe "normal g`\"" | endif
 augroup END
 
-"NERDTreeをデフォルトで起動
+" NERDTreeをデフォルトで起動
 autocmd VimEnter * execute 'NERDTree'
 
 " NeoBundle がインストールされていない時、
@@ -180,47 +181,31 @@ call s:InitNeoBundle()
   NeoBundle 'ujihisa/unite-colorscheme'
 
 	NeoBundle 'mattn/emmet-vim'
-"vim-rails
+" vim-rails
 	NeoBundle 'tpope/vim-rails'
-"autoclose 括弧の補完
+" autoclose 括弧の補完
 	NeoBundle 'Townk/vim-autoclose'
-"NERDTree
+" NERDTree
   NeoBundle 'scrooloose/nerdtree'
-"vimshell
+" vimshell
   NeoBundle 'Shougo/vimshell'
-"vimproc
+" vimproc
   NeoBundle 'Shougo/vimproc'
-"neocomplchace
-  NeoBundle 'Shougo/neocomplcache'
-"" neocomplcache
-NeoBundle 'Shougo/neocomplcache'
+" neocomplete
+"  NeoBundle 'Shougo/neocomplete.vim'
 
-" neocomplcache
- let g:neocomplcache_enable_at_startup = 1
- let g:neocomplcache_max_list = 30
- let g:neocomplcache_auto_completion_start_length = 2
- let g:neocomplcache_enable_smart_case = 1
- "" like AutoComplPop
- let g:neocomplcache_enable_auto_select = 1
- "" search with camel case like Eclipse
- let g:neocomplcache_enable_camel_case_completion = 1
- let g:neocomplcache_enable_underbar_completion = 1
- "imap <C-k> <Plug>(neocomplcache_snippets_expand)
- "smap <C-k> <Plug>(neocomplcache_snippets_expand)
- inoremap <expr><C-g> neocomplcache#undo_completion()
- inoremap <expr><C-l> neocomplcache#complete_common_string()
- "" SuperTab like snippets behavior.
- "imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ?
- "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" :
- "\<TAB>"
- "" <CR>: close popup and save indent.
- "inoremap <expr><CR> neocomplcache#smart_close_popup() . (&indentexpr != ''? "\<C-f>\<CR>X\<BS>":"\<CR>")
- inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
- "" <TAB>: completion.
- inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
- "" <C-h>, <BS>: close popup and delete backword char.
- inoremap <expr><C-h> neocomplcache#smart_close_popup() . "\<C-h>"
- inoremap <expr><BS> neocomplcache#smart_close_popup() . "\<C-h>"
- inoremap <expr><C-y> neocomplcache#close_popup()
- inoremap <expr><C-e> neocomplcache#cancel_popup()"" "" " """""
+" Coffee Script
+  NeoBundle 'kchmck/vim-coffee-script'
+" vimにcoffeeファイルタイプを認識させる
+  au BufRead, BufNewFile, BufRadPre *.coffee set filetype=coffee
 
+
+" インデント設定
+  autocmd FileType coffee setlocal sw=2 sts=2 ts=2 et
+" オートコンパイル
+  " 保存と同時にコンパイルする   
+"  autocmd BufWritePost *.coffee silent make!
+  " エラーがあったら別ウィンドウで表示
+"  autocmd QuickFixCmdPost * nested swindow | redraw!
+  " Ctr-cで右ウィンドウにコンパイル結果を一時表示する
+"  nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
