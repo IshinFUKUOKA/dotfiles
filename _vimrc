@@ -206,8 +206,18 @@ colorscheme slate
 " vimにcoffeeファイルタイプを認識させる
   au BufRead, BufNewFile, BufRadPre *.coffee set filetype=coffee
 
-"" Coffeeインデント設定
+" Coffeeインデント設定
   autocmd FileType coffee setlocal sw=2 sts=2 ts=2 et
+
+" オートコンパイル
+  " 保存と同時にコンパイルする
+  autocmd BufWritePost *.coffee silent make!
+
+  " エラーがあったら別ウィンドウで表示
+  autocmd QuickFixCmdPost * nested cwindow | redraw!
+
+  " Ctrc-c で右ウィンドウにコンパイル結果を一時表示
+  " nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
 
 " vim起動時にvim-indent-guide ON
 let g:indent_guides_enable_on_vim_startup = 1
