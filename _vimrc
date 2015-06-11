@@ -41,6 +41,9 @@ set ignorecase
 nnoremap j gj
 nnoremap k gk
 
+" Visualモードで選択した範囲を検索
+vnoremap * "zy:let @/ = @z<CR>n"
+
 " タブの設定
 " Anywhere SID.
 function! s:SID_PREFIX()
