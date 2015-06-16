@@ -145,9 +145,9 @@ NeoBundle 'Townk/vim-autoclose'
 " NERDTree
 NeoBundle 'scrooloose/nerdtree'
 " vimshell
-NeoBundle 'Shougo/vimshell'
+ NeoBundle 'Shougo/vimshell'
 " vimproc
-NeoBundle 'Shougo/vimproc'
+ NeoBundle 'Shougo/vimproc'
 " neocomplete
 "  NeoBundle 'Shougo/neocomplete.vim'
 
@@ -224,3 +224,16 @@ colorscheme slate
 
 " vim起動時にvim-indent-guide ON
 let g:indent_guides_enable_on_vim_startup = 1
+
+" vimshell 設定
+" ,is:シェルを起動
+nnoremap <silent> ,is :VimShell<CR>
+" ,ipy pythonを非同期で実行
+nnoremap <silent> ,ipy :VimShellInteractive ipython<CR>
+" ,irb irbを非同期で実行
+nnoremap <silent> ,irb :VimShellInteractive irb<CR>
+" ,ss 非同期で開いたインタプリタに現在の行を評価させる
+vmap <silent> ,ss :VimShellSendString<CR>
+" ,ss 非同期で開いたインタプリタに選択中の行を評価させる
+nnoremap <silent> ,ss <S-v>:VimShellSendString<CR>
+
