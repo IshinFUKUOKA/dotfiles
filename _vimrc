@@ -232,6 +232,10 @@ nnoremap <silent> ,is :VimShell<CR>
 nnoremap <silent> ,ipy :VimShellInteractive ipython<CR>
 " ,irb irbを非同期で実行
 nnoremap <silent> ,irb :VimShellInteractive irb<CR>
+" ,rcs rails console(staging)を非同期で実行
+nnoremap <silent> ,rcs :VimShellInteractive rails console -e staging<CR>
+" ,rcd rails console(development)を非同期で実行
+nnoremap <silent> ,rcd :VimShellInteractive rails console -e development<CR>
 " ,ss 非同期で開いたインタプリタに現在の行を評価させる
 vmap <silent> ,ss :VimShellSendString<CR>
 " ,ss 非同期で開いたインタプリタに選択中の行を評価させる
