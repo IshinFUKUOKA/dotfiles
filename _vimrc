@@ -230,7 +230,7 @@ let g:indent_guides_enable_on_vim_startup = 1
 
 " vimshell 設定
 " ,is:シェルを起動
-nnoremap <silent> ,is :VimShell<CR>
+nnoremap <silent> ,is :VimShellCreate<CR>
 " ,ipy pythonを非同期で実行
 nnoremap <silent> ,ipy :VimShellInteractive ipython<CR>
 " ,irb irbを非同期で実行
