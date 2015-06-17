@@ -163,6 +163,9 @@ NeoBundle "tomtom/tcomment_vim"
 " インデント視覚化
 NeoBundle 'nathanaelkane/vim-indent-guides'
 
+" sudo.vim
+NeoBundle 'sudo.vim'
+
 NeoBundleCheck
 
 call neobundle#end()
