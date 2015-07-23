@@ -37,12 +37,25 @@ set hlsearch
 " 検索で大文字と小文字を区別しない
 set ignorecase
 
+" ファイルエンコーディング
+set fileencodings=utf-8,sjis,euc-jp,cp932
+
+" ヤンクをクリップボードにもコピー
+set clipboard+=unnamed
+
 " j,kによる移動を折返されたテキストでも自然に振舞うよう表示？
 nnoremap j gj
 nnoremap k gk
 
 " Visualモードで選択した範囲を検索
 vnoremap * "zy:let @/ = @z<CR>n"
+
+" 折りたたみ
+set foldmethod=indent
+set foldlevel=3
+" set foldcolumn=3
+autocmd VimEnter * execute 'set foldlevel=1'
+
 
 " タブの設定
 " Anywhere SID.
@@ -81,7 +94,8 @@ for n in range(1, 9)
 endfor
 " t1で1番左のタブ、t2で1番左から2番目のタブにジャンプ
 
-map <silent> [Tag]n :tablast <bar> tabnew<CR>
+" map <silent> [Tag]n :tablast <bar> tabnew<CR>
+map <silent> [Tag]n :tabnew<CR>
 " tn 新しいタブを一番右に作る
 map <silent> [Tag]x :tabclose<CR>
 " tx タブを閉じる
@@ -94,6 +108,12 @@ augroup vimrcEx
   au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
 	\ exe "normal g`\"" | endif
 augroup END
+
+" window操作
+" <C-l>で上下に分割された画面を左右に変更
+" nnoremap <silent> <C-l> <C-w><S-l><CR>
+" <C-k>で左右に分割された画面を上下に変更
+" nnoremap <silent> <C-k> <C-w><S-k><CR>
 
 " neobundle settings {{{
 if has('vim_starting')
@@ -168,6 +188,9 @@ NeoBundle 'sudo.vim'
 
 " fugitive.vim
 NeoBundle 'tpope/vim-fugitive'
+
+" ログファイルを色づけしてくれる
+NeoBundle 'vim-scripts/AnsiEsc.vim'
 
 NeoBundleCheck
 
@@ -280,4 +303,28 @@ inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplcache#close_popup()
 inoremap <expr><C-e>  neocomplcache#cancel_popup()""
-0
+
+" for Java
+NeoBundleLazy 'ervandew/eclim', {'build': {'mac': 'ant-Declipse.home=/opt/homebrew-cask/Caskroom/eclipse-java/4.4.0/eclipse -Dvim.files='.escape(expand('~/.bundle/eclim'), '')}}
+autocmd FileType java NeoBundleSource eclim
+" open declaration
+nnoremap <silent> od :JavaSearchContext<CR>
+" open call hierarchy
+nnoremap <silent> oh :JavaCallHierarchy<CR>
+" add import sentences :JavaImportOrganize 
+" let g:EclimCompletionMethod = 'g:neocomplcache'
+let g:neocomplcache_force_overwrite_completefunc = 1
+
+" 拾い物 http://d.hatena.ne.jp/m1204080/20101025/1288028786
+"-----------------------------------------
+"カレントウィンドウを新規タブで開き直す
+"-----------------------------------------
+if v:version >= 700
+  nnoremap <C-t> :call OpenNewTab()<CR>
+  function! OpenNewTab()
+    let f = expand("%:p")
+    execute ":q"
+    execute ":tabnew ".f
+  endfunction
+endif
+
