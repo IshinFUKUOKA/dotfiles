@@ -109,11 +109,31 @@ augroup vimrcEx
 	\ exe "normal g`\"" | endif
 augroup END
 
-" window操作
-" <C-l>で上下に分割された画面を左右に変更
-" nnoremap <silent> <C-l> <C-w><S-l><CR>
-" <C-k>で左右に分割された画面を上下に変更
-" nnoremap <silent> <C-k> <C-w><S-k><CR>
+" window操作---------------------------------
+nnoremap ss :<C-u>sp<CR>
+nnoremap sv :<C-u>vs<CR>
+nnoremap s <Nop>
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sl <C-w>l
+nnoremap sh <C-w>h
+nnoremap sJ <C-w>J
+nnoremap sK <C-w>K
+nnoremap sL <C-w>L
+nnoremap sH <C-w>H
+
+" vim-submode---------------------------------
+
+call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
+call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
+call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
+call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
+call submode#map('bufmove', 'n', '', '>', '<C-w>>')
+call submode#map('bufmove', 'n', '', '<', '<C-w><')
+call submode#map('bufmove', 'n', '', '+', '<C-w>+')
+call submode#map('bufmove', 'n', '', '-', '<C-w>-')
+
+" -------------------------------------------
 
 " neobundle settings {{{
 if has('vim_starting')
@@ -191,6 +211,9 @@ NeoBundle 'tpope/vim-fugitive'
 
 " ログファイルを色づけしてくれる
 NeoBundle 'vim-scripts/AnsiEsc.vim'
+
+" 画面サイズとか変更できる
+NeoBundle 'kana/vim-submode'
 
 NeoBundleCheck
 
@@ -307,10 +330,10 @@ inoremap <expr><C-e>  neocomplcache#cancel_popup()""
 " for Java
 NeoBundleLazy 'ervandew/eclim', {'build': {'mac': 'ant-Declipse.home=/opt/homebrew-cask/Caskroom/eclipse-java/4.4.0/eclipse -Dvim.files='.escape(expand('~/.bundle/eclim'), '')}}
 autocmd FileType java NeoBundleSource eclim
-" open declaration
-nnoremap <silent> od :JavaSearchContext<CR>
+" Eclim open declaration
+nnoremap <silent> ,od :JavaSearchContext<CR>
 " open call hierarchy
-nnoremap <silent> oh :JavaCallHierarchy<CR>
+nnoremap <silent> ,oh :JavaCallHierarchy<CR>
 " add import sentences :JavaImportOrganize 
 " let g:EclimCompletionMethod = 'g:neocomplcache'
 let g:neocomplcache_force_overwrite_completefunc = 1
