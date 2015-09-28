@@ -41,7 +41,7 @@ set ignorecase
 set fileencodings=utf-8,sjis,euc-jp,cp932
 
 " ヤンクをクリップボードにもコピー
-set clipboard+=unnamed
+" set clipboard+=unnamed
 
 " j,kによる移動を折返されたテキストでも自然に振舞うよう表示？
 nnoremap j gj
@@ -108,32 +108,6 @@ augroup vimrcEx
   au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
 	\ exe "normal g`\"" | endif
 augroup END
-
-" window操作---------------------------------
-nnoremap ss :<C-u>sp<CR>
-nnoremap sv :<C-u>vs<CR>
-nnoremap s <Nop>
-nnoremap sj <C-w>j
-nnoremap sk <C-w>k
-nnoremap sl <C-w>l
-nnoremap sh <C-w>h
-nnoremap sJ <C-w>J
-nnoremap sK <C-w>K
-nnoremap sL <C-w>L
-nnoremap sH <C-w>H
-
-" vim-submode---------------------------------
-
-call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
-call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
-call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
-call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
-call submode#map('bufmove', 'n', '', '>', '<C-w>>')
-call submode#map('bufmove', 'n', '', '<', '<C-w><')
-call submode#map('bufmove', 'n', '', '+', '<C-w>+')
-call submode#map('bufmove', 'n', '', '-', '<C-w>-')
-
-" -------------------------------------------
 
 " neobundle settings {{{
 if has('vim_starting')
@@ -223,6 +197,32 @@ filetype plugin indent on
 " カラースキーム
 colorscheme slate 
 
+" window操作---------------------------------
+nnoremap ss :<C-u>sp<CR>
+nnoremap sv :<C-u>vs<CR>
+nnoremap s <Nop>
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sl <C-w>l
+nnoremap sh <C-w>h
+nnoremap sJ <C-w>J
+nnoremap sK <C-w>K
+nnoremap sL <C-w>L
+nnoremap sH <C-w>H
+
+" vim-submode---------------------------------
+
+call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
+call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
+call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
+call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
+call submode#map('bufmove', 'n', '', '>', '<C-w>>')
+call submode#map('bufmove', 'n', '', '<', '<C-w><')
+call submode#map('bufmove', 'n', '', '+', '<C-w>+')
+call submode#map('bufmove', 'n', '', '-', '<C-w>-')
+
+" -------------------------------------------
+
 " unite {{{
 "let g:unite_enable_start_insert=1
 "nmap <silent> <C-u><C-b> :<C-u>Unite buffer<CR>
@@ -255,7 +255,7 @@ colorscheme slate
 "" }
 
 " NERDTreeをデフォルトで起動
-  autocmd VimEnter * execute 'NERDTree'
+" autocmd VimEnter * execute 'NERDTree'
 
 " vimにcoffeeファイルタイプを認識させる
   au BufRead, BufNewFile, BufRadPre *.coffee set filetype=coffee
@@ -351,3 +351,5 @@ if v:version >= 700
   endfunction
 endif
 
+" CrystalのsyntaxをRubyと一緒に
+au BufRead *.cr set filetype=ruby
