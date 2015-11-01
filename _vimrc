@@ -41,7 +41,7 @@ set ignorecase
 set fileencodings=utf-8,sjis,euc-jp,cp932
 
 " ヤンクをクリップボードにもコピー
-" set clipboard+=unnamed
+set clipboard+=unnamed
 
 " j,kによる移動を折返されたテキストでも自然に振舞うよう表示？
 nnoremap j gj
@@ -161,7 +161,14 @@ NeoBundle 'scrooloose/nerdtree'
 " vimshell
  NeoBundle 'Shougo/vimshell'
 " vimproc
- NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimproc', {
+      \ 'build' : {
+      \ 'windows' : 'make -f make_mingw32.mak',
+      \ 'cygwin' : 'make -f make_cygwin.mak',
+      \ 'mac' : 'make -f make_mac.mak',
+      \ 'unix' : 'make -f make_unix.mak',
+      \ },
+\ }
 " neocomplcache
  NeoBundle 'Shougo/neocomplcache'
 
