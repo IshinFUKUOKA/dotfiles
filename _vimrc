@@ -41,7 +41,7 @@ set ignorecase
 set fileencodings=utf-8,sjis,euc-jp,cp932
 
 " ヤンクをクリップボードにもコピー
-" set clipboard+=unnamed
+set clipboard=unnamed
 
 " j,kによる移動を折返されたテキストでも自然に振舞うよう表示？
 nnoremap j gj
@@ -283,6 +283,8 @@ nnoremap <silent> ,is :VimShellCreate<CR>
 nnoremap <silent> ,ipy :VimShellInteractive ipython<CR>
 " ,irb irbを非同期で実行
 nnoremap <silent> ,irb :VimShellInteractive irb<CR>
+" ,pry pryを非同期で実行
+nnoremap <silent> ,pry :VimShellInteractive pry<CR>
 " ,rcs rails console(staging)を非同期で実行
 nnoremap <silent> ,rcs :VimShellInteractive rails console staging<CR>
 " ,rcd rails console(development)を非同期で実行
