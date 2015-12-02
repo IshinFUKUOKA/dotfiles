@@ -161,7 +161,14 @@ NeoBundle 'scrooloose/nerdtree'
 " vimshell
  NeoBundle 'Shougo/vimshell'
 " vimproc
- NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimproc', {
+      \ 'build' : {
+      \ 'windows' : 'make -f make_mingw32.mak',
+      \ 'cygwin' : 'make -f make_cygwin.mak',
+      \ 'mac' : 'make -f make_mac.mak',
+      \ 'unix' : 'make -f make_unix.mak',
+      \ },
+\ }
 " neocomplcache
  NeoBundle 'Shougo/neocomplcache'
 
@@ -355,3 +362,7 @@ endif
 
 " CrystalのsyntaxをRubyと一緒に
 au BufRead *.cr set filetype=ruby
+
+" ctags
+NeoBundle 'soramugi/auto-ctags.vim'
+let g:auto_ctags = 1

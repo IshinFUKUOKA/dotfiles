@@ -1,0 +1,15 @@
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+  . ~/.bashrc
+fi
+
+# alias
+case "${OSTYPE}" in
+  darwin*)
+    alias ls="ls -G"
+    ;;
+  linux*)
+    alias ls='ls --color'
+esac
+alias la='ls -a'
+alias ll='ls -l'
