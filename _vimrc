@@ -360,3 +360,15 @@ endif
 
 " CrystalのsyntaxをRubyと一緒に
 au BufRead *.cr set filetype=ruby
+
+" 補完ポップアップの色
+" ノーマルアイテム
+hi Pmenu ctermbg=17
+" 選択しているアイテム
+hi PmenuSel ctermbg=4
+" スクロールバー
+hi PmenuSbar ctermbg=2
+" スクロールのレバー
+hi PmenuThumb ctermfg=3
+
+hi Search ctermbg=14 ctermfg=0
