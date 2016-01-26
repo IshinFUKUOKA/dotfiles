@@ -146,11 +146,9 @@ NeoBundle 'jpo/vim-railscasts-theme'
 NeoBundle 'therubymug/vim-pyte'
 " molokai カラースキーム
 NeoBundle 'tomasr/molokai'
-
 " カラースキーム一覧表示に Unite.vim を使う
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'ujihisa/unite-colorscheme'
-
 "	NeoBundle 'mattn/emmet-vim'
 " vim-rails
 NeoBundle 'tpope/vim-rails'
@@ -171,30 +169,26 @@ NeoBundle 'Shougo/vimproc', {
 \ }
 " neocomplcache
  NeoBundle 'Shougo/neocomplcache'
-
 " Coffee Script
 NeoBundle 'kchmck/vim-coffee-script'
-
 " Ruby で endを自動挿入してくれる
 NeoBundle 'tpope/vim-endwise'
-
 " コメントON/OFFを<C ->×2で実行
 NeoBundle "tomtom/tcomment_vim"
-
 " インデント視覚化
 NeoBundle 'nathanaelkane/vim-indent-guides'
-
 " sudo.vim
 NeoBundle 'sudo.vim'
-
 " fugitive.vim
 NeoBundle 'tpope/vim-fugitive'
-
 " ログファイルを色づけしてくれる
 NeoBundle 'vim-scripts/AnsiEsc.vim'
-
 " 画面サイズとか変更できる
 NeoBundle 'kana/vim-submode'
+" ctags
+NeoBundle 'soramugi/auto-ctags.vim'
+" vim-obsession
+NeoBundle 'tpope/vim-obsession'
 
 NeoBundleCheck
 
@@ -376,5 +370,4 @@ hi PmenuThumb ctermfg=3
 hi Search ctermbg=14 ctermfg=0
 
 " ctags
-NeoBundle 'soramugi/auto-ctags.vim'
 let g:auto_ctags = 1
