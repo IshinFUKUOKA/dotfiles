@@ -370,6 +370,6 @@ hi PmenuThumb ctermfg=3
 hi Search ctermbg=14 ctermfg=0
 
 " ctags
-let g:auto_ctags = 1
-nnoremap <C-l> :vsp<CR> :exe("tjump ".expand('<cword>'))<CR>
-nnoremap <C-k> :split<CR> :exe("tjump ".expand('<cword>'))<CR>
+" let g:auto_ctags = 1
+" nnoremap <C-l> :vsp<CR> :exe("tjump ".expand('<cword>'))<CR>
+" nnoremap <C-k> :split<CR> :exe("tjump ".expand('<cword>'))<CR>
