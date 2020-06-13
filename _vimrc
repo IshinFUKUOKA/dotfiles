@@ -109,94 +109,7 @@ augroup vimrcEx
 	\ exe "normal g`\"" | endif
 augroup END
 
-" neobundle settings {{{
-if has('vim_starting')
-  set nocompatible
-  " neobundleをインストールしていない場合は自動インストール
-  if !isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
-    echo "install neobundle..."
-    " neobundle.vim のくろーん
-    :call system("git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim")
-  endif
-  " runtimepathの追加は必須
-  set runtimepath +=~/.vim/bundle/neobundle.vim/
-endif
-call neobundle#begin(expand('~/.vim/bundle'))
-let g:neobundle_default_git_protocol='https'
-" }}}
-
-
-" solarized カラースキーム
-NeoBundle 'altercation/vim-colors-solarized'
-" mustang カラースキーム
-NeoBundle 'croaker/mustang-vim'
-" wombat カラースキーム
-NeoBundle 'jeffreyiacono/vim-colors-wombat'
-" jellybeans カラースキーム
-NeoBundle 'nanotech/jellybeans.vim'
-" lucius カラースキーム
-NeoBundle 'vim-scripts/Lucius'
-" zenburn カラースキーム
-NeoBundle 'vim-scripts/Zenburn'
-" mrkn256 カラースキーム
-NeoBundle 'mrkn/mrkn256.vim'
-" railscasts カラースキーム
-NeoBundle 'jpo/vim-railscasts-theme'
-" pyte カラースキーム
-NeoBundle 'therubymug/vim-pyte'
-" molokai カラースキーム
-NeoBundle 'tomasr/molokai'
-" カラースキーム一覧表示に Unite.vim を使う
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'ujihisa/unite-colorscheme'
-"	NeoBundle 'mattn/emmet-vim'
-" vim-rails
-NeoBundle 'tpope/vim-rails'
-" autoclose 括弧の補完
-NeoBundle 'Townk/vim-autoclose'
-" NERDTree
-NeoBundle 'scrooloose/nerdtree'
-" vimshell
- NeoBundle 'Shougo/vimshell'
-" vimproc
-NeoBundle 'Shougo/vimproc', {
-      \ 'build' : {
-      \ 'windows' : 'make -f make_mingw32.mak',
-      \ 'cygwin' : 'make -f make_cygwin.mak',
-      \ 'mac' : 'make -f make_mac.mak',
-      \ 'unix' : 'make -f make_unix.mak',
-      \ },
-\ }
-" neocomplcache
- NeoBundle 'Shougo/neocomplcache'
-" Coffee Script
-NeoBundle 'kchmck/vim-coffee-script'
-" Ruby で endを自動挿入してくれる
-NeoBundle 'tpope/vim-endwise'
-" コメントON/OFFを<C ->×2で実行
-NeoBundle "tomtom/tcomment_vim"
-" インデント視覚化
-NeoBundle 'nathanaelkane/vim-indent-guides'
-" sudo.vim
-NeoBundle 'sudo.vim'
-" fugitive.vim
-NeoBundle 'tpope/vim-fugitive'
-" ログファイルを色づけしてくれる
-NeoBundle 'vim-scripts/AnsiEsc.vim'
-" 画面サイズとか変更できる
-NeoBundle 'kana/vim-submode'
-" ctags
-NeoBundle 'soramugi/auto-ctags.vim'
-" vim-obsession
-NeoBundle 'tpope/vim-obsession'
-
-NeoBundleCheck
-
-call neobundle#end()
 filetype plugin indent on
-
-" カラースキーム
-colorscheme slate 
 
 " window操作---------------------------------
 nnoremap ss :<C-u>sp<CR>
@@ -213,14 +126,14 @@ nnoremap sH <C-w>H
 
 " vim-submode---------------------------------
 
-call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
-call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
-call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
-call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
-call submode#map('bufmove', 'n', '', '>', '<C-w>>')
-call submode#map('bufmove', 'n', '', '<', '<C-w><')
-call submode#map('bufmove', 'n', '', '+', '<C-w>+')
-call submode#map('bufmove', 'n', '', '-', '<C-w>-')
+" call submode#enter_with('bufmove', 'n', '', 's>', '<C-w>>')
+" call submode#enter_with('bufmove', 'n', '', 's<', '<C-w><')
+" call submode#enter_with('bufmove', 'n', '', 's+', '<C-w>+')
+" call submode#enter_with('bufmove', 'n', '', 's-', '<C-w>-')
+" call submode#map('bufmove', 'n', '', '>', '<C-w>>')
+" call submode#map('bufmove', 'n', '', '<', '<C-w><')
+" call submode#map('bufmove', 'n', '', '+', '<C-w>+')
+" call submode#map('bufmove', 'n', '', '-', '<C-w>-')
 
 " -------------------------------------------
 
@@ -295,53 +208,6 @@ vmap <silent> ,ss :VimShellSendString<CR>
 " ,ss 非同期で開いたインタプリタに選択中の行を評価させる
 nnoremap <silent> ,ss <S-v>:VimShellSendString<CR>
 
-"" neocomplcache
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
-" Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
-" Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {
-      \ 'default' : ''
-      \ }
-
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplcache#undo_completion()
-inoremap <expr><C-l>     neocomplcache#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return neocomplcache#smart_close_popup() . "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"   
-inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>" 
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplcache#close_popup()
-inoremap <expr><C-e>  neocomplcache#cancel_popup()""
-
-" for Java
-NeoBundleLazy 'ervandew/eclim', {'build': {'mac': 'ant-Declipse.home=/opt/homebrew-cask/Caskroom/eclipse-java/4.4.0/eclipse -Dvim.files='.escape(expand('~/.bundle/eclim'), '')}}
-autocmd FileType java NeoBundleSource eclim
-" Eclim open declaration
-nnoremap <silent> ,od :JavaSearchContext<CR>
-" open call hierarchy
-nnoremap <silent> ,oh :JavaCallHierarchy<CR>
-" add import sentences :JavaImportOrganize 
-" let g:EclimCompletionMethod = 'g:neocomplcache'
-let g:neocomplcache_force_overwrite_completefunc = 1
-
-" 拾い物 http://d.hatena.ne.jp/m1204080/20101025/1288028786
 "-----------------------------------------
 "カレントウィンドウを新規タブで開き直す
 "-----------------------------------------
@@ -369,7 +235,3 @@ hi PmenuThumb ctermfg=3
 
 hi Search ctermbg=14 ctermfg=0
 
-" ctags
-" let g:auto_ctags = 1
-" nnoremap <C-l> :vsp<CR> :exe("tjump ".expand('<cword>'))<CR>
-" nnoremap <C-k> :split<CR> :exe("tjump ".expand('<cword>'))<CR>
